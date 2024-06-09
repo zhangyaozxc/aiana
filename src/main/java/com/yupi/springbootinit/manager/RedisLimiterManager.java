@@ -10,17 +10,17 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
-@Service
-public class RedisLimiterManager {
-    @Resource
-    private RedissonClient redissonClient;
-
-    public void doRateLimit(String key) {
-        RRateLimiter rateLimiter = redissonClient.getRateLimiter(key);
-        rateLimiter.trySetRate(RateType.OVERALL, 2, 1, RateIntervalUnit.SECONDS);
-        boolean canOp = rateLimiter.tryAcquire(1);
-        if (!canOp) {
-            throw new BusinessException(ErrorCode.TO_MANY_REQUSET);
-        }
-    }
-}
+//@Service
+//public class RedisLimiterManager {
+//    @Resource
+//    private RedissonClient redissonClient;
+//
+//    public void doRateLimit(String key) {
+//        RRateLimiter rateLimiter = redissonClient.getRateLimiter(key);
+//        rateLimiter.trySetRate(RateType.OVERALL, 2, 1, RateIntervalUnit.SECONDS);
+//        boolean canOp = rateLimiter.tryAcquire(1);
+//        if (!canOp) {
+//            throw new BusinessException(ErrorCode.TO_MANY_REQUSET);
+//        }
+//    }
+//}
